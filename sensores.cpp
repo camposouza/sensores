@@ -11,7 +11,7 @@
 //          BUFFERS 
 // =========================
 
-#define BUFFER_SIZE 256
+#define BUFFER_SIZE 16
 
 BufferCircular b_bruto(BUFFER_SIZE);       // Buffer escrito pela thread simulando os sensores
 BufferCircular b_velocidade(BUFFER_SIZE);  // Buffer com os dados de velocidade
@@ -41,7 +41,7 @@ void t_geraDados() {
 void t_getLeituras() {
     while(true) {
         Sensores s = b_bruto.getValor();
-        gerador.printaDados(s.velocidade, s.consumo, 0);
+        // gerador.printaDados(s.velocidade, s.consumo, 0);
     }
 }
 
@@ -59,6 +59,11 @@ void t_ETLVelocidade() {
         pode_escrever_velocidade = false;
         cond.notify_one();
 
+        std::cout << "Velocidade: " << b_velocidade.getValor().velocidade << std::endl;
+
+        // Garante uma taxa real de atualização de dados
+        std::this_thread::sleep_for (std::chrono::milliseconds(200));
+
     }
 }
 
@@ -75,6 +80,11 @@ void t_ETLConsumo() {
         // Passa a vez para a outra thread
         pode_escrever_velocidade = true;
         cond.notify_one();
+
+        std::cout << "Consumo: " << b_consumo.getValor().consumo << std::endl;
+
+        // Garante uma taxa real de atualização de dados
+        std::this_thread::sleep_for (std::chrono::milliseconds(500));
 
     }
 }

@@ -30,7 +30,7 @@ public:
             is_full_ = true;
         }
 
-        std::cout << "add() " << buffer_[head_].consumo << std::endl;
+        // std::cout << "add() " << buffer_[head_].consumo << std::endl;
     }
     
     /**
@@ -39,10 +39,11 @@ public:
      */
     Sensores getValor() {
         if (!is_full_) {
-            std::cout << "getValor() " << buffer_[head_].consumo << std::endl;
+            // std::cout << "getValor() " << buffer_[head_].consumo << std::endl;
             return buffer_[0];
         }
-        std::cout << "getValor() " << buffer_[head_].consumo << std::endl;
+        
+        // std::cout << "getValor() " << buffer_[head_].consumo << std::endl;
         return buffer_[head_];
     }
 
