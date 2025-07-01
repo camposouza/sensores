@@ -17,11 +17,13 @@ void ETL(BufferCircular &b_origem, BufferCircular &b_destino, std::string medica
         // Zera os dados de consumo. Mantem os dados de velocidade
         dados_lidos.consumo = 0;
         b_destino.add(dados_lidos);
-
+        std::cout << "VELOCIDADE" << std::endl; //FIXME: remover
+        
     } else if (medicao == "consumo") {
         // Zera os dados de velocidade. Mantem os dados de consumo
         dados_lidos.velocidade = 0;
         b_destino.add(dados_lidos);
+        std::cout << "CONSUMO" << std::endl; //FIXME: remover
     } else {
         // Input do usuário incorreto
         std::cout << "ERROR: medicao deve ser <velocidade> ou <consumo>" << std::endl;
