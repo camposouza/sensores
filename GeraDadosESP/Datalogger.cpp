@@ -51,6 +51,7 @@ void Datalogger::concatenaArquivo(String path, String data) {
     if(this->meu_arquivo) {
         this->meu_arquivo.println(data);
         Serial.println("Message appended");
+        Serial.println("");
     } else {
         Serial.println("Append failed");
     }
